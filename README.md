@@ -3,6 +3,8 @@
 ## Overview
 This project served as my introduction into machine learning with a simple 2-layer neural network with NumPy and pandas, utilizing forward and back propagation and gradient descent. Using the classic MNIST dataset the network obtained consistent ~92% accuracy over multiple trials on randomized dev data it was not trained on.
 
+![Accuracy plot](accuracy_plot.png)
+
 ## How to run
 ```
 pip install numpy pandas matplotlib
