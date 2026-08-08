@@ -81,7 +81,7 @@ def grad_descent(X, Y, iters, alpha):
     return W1, b1, W2, b2
 
 W1, b1, W2, b2 = grad_descent(X_train, Y_train, 3000, 0.1)
-            
+
 def make_predictions(X, W1, b1, W2, b2):
     Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X)
     predictions = get_predictions(A2)
