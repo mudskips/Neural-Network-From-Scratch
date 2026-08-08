@@ -71,16 +71,20 @@ def get_accuracy(predictions, Y):
 
 def grad_descent(X, Y, iters, alpha):
     W1,b1, W2, b2 = init_params()
+    accs = []
+    its = []
     for i in range(iters):
         Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X)
         dW1, db1, dW2, db2 = back_prop(Z1, Z2, A1, A2, W2, X, Y)
         W1, b1, W2, b2 = update(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha)
         if (i % 50 == 0):
             print(f"Iteration {i}")
+            its.append(i)
             print(f"Accuracy: {get_accuracy(get_predictions(A2), Y)}")
-    return W1, b1, W2, b2
+            accs.append(get_accuracy(get_predictions(A2), Y))
+    return W1, b1, W2, b2, its, accs
 
-W1, b1, W2, b2 = grad_descent(X_train, Y_train, 3000, 0.1)
+W1, b1, W2, b2, its, accs = grad_descent(X_train, Y_train, 3000, 0.1)
 
 def make_predictions(X, W1, b1, W2, b2):
     Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X)
@@ -88,5 +92,6 @@ def make_predictions(X, W1, b1, W2, b2):
     return predictions
 
 dev_predictions = make_predictions(X_dev, W1, b1, W2, b2)
-print(f"Dev accuracy: {get_accuracy(dev_predictions, Y_dev)}")
+dev_accuracy = get_accuracy(dev_predictions, Y_dev)
+print(f"Dev accuracy: {dev_accuracy}")
 
